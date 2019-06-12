@@ -161,14 +161,14 @@ def pattern_for_each_cluster_prec(excel_file):
 
 
 def main():
+    # not really interesting tests, will only work if sequences are continous ( no holes in day sequence )
     t1 = time()
     df = pd.read_excel('bio_precede_full3.xlsx')
-
     t2 = time()
     print(t2 - t1)
     l2 = find_seq_chained_lists(l[0], l[-1], fill_dic(n_sized_precedence(df, 1, "datefrom"), "datefrom"))
     t3 = time()
     print(t3 - t2)
 
-
-main()
+if __main__ == 'main':
+    main()
