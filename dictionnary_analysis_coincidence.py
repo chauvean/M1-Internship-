@@ -77,17 +77,25 @@ def main():
     print("open data time : {}".format(t2 - t1))
     # filter interesting columns (spped up a little bit)
     df2 = df[['Source', 'Target', 'trajID', 'delta_T0']]
+    
+    #transform into tslearn functions understandable format
     array = get_infos(df[:1000], 'delta_T0', False)
     ndarray = [[el] for el in array]
     timeserie = to_time_series_dataset(ndarray)
-
-    ## uncomment
-
+    
+    
+    #parameters
+    wanted_clusters = [2, 3, 4, 5]
+    step = 1000 #draw_coinc only execute for k*step number of samples
+    option = "savefig"
+    output_file = "coincidence_dic_complexity.png"
+    
+    #uncomment the following tests
     # sil_and_cluster(timeserie, 2)
-    # draw_coincidence_dic_complexity(df, [2, 3, 4, 5], 1000, "", "savefig", "coincidence_dic_complexity.png")
+    # draw_coincidence_dic_complexity(df, , step , "", option, output_file)
 
     t3 = time()
     print("total time : {}".format(t3 - t2))
 
-
-main()
+if __name__ == 'main':
+    main()
